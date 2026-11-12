@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AURELIA &amp; CHRONOS | Alta Relojería Suiza</title>
+<!-- Bootstrap 5 CSS CDN -->
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet"/>
+<!-- Google Fonts: Cormorant Garamond (Serif de lujo) & Montserrat (Sans limpio) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+<style>
+    /* ==========================================================================
+       ESTILOS PERSONALIZADOS: IDENTIDAD VISUAL DE LUJO
+       Paleta: Noir Profundo (#0d0e12, #14161d), Acentos Oro Cálido (#d4af37, #c5a028),
+       Plata/Gris Titanio (#8e95a5, #e5e7eb) y Blanco Puro (#ffffff).
+       ========================================================================== */
+    :root {
+      --bg-dark: #0b0c10;
+      --bg-card: #13151c;
+      --bg-elevated: #1a1e27;
+      --gold-primary: #d4af37;
+      --gold-hover: #f3cf55;
+      --gold-muted: #8d7729;
+      --silver-accent: #c0c5ce;
+      --text-light: #f8f9fa;
+      --text-muted-custom: #9ca3af;
+      --border-subtle: rgba(212, 175, 55, 0.2);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Tipografía refinada */
+    h1, h2, h3, .brand-font, .price-display {
+      font-family: var(--font-serif);
+      letter-spacing: 0.05em;
+    }
+
+    .sub-title-track {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gold-primary);
+    }
+
+    /* Barra Superior Informativa */
+    .top-announcement {
+      background: linear-gradient(90deg, #090a0d 0%, #15171f 50%, #090a0d 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 0;
+      color: var(--silver-accent);
+    }
+
+    /* Encabezado y Navbar */
+    .navbar-luxury {
+      background-color: rgba(11, 12, 16, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all 0.3s ease;
+      padding-top: 0.9rem;
+      padding-bottom: 0.9rem;
+    }
+
+    .navbar-brand {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #ffffff !important;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-crown {
+      color: var(--gold-primary);
+      font-size: 1.25rem;
+    }
+
+    .nav-link {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 500;
+      color: #d1d5db !important;
+      padding: 0.5rem 0.9rem !important;
+      transition: color 0.25s ease;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold-primary) !important;
+    }
+
+    .navbar-toggler {
+      border: 1px solid var(--border-subtle);
+      padding: 6px 10px;
+    }
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 2px var(--gold-primary);
+    }
+    .navbar-toggler-icon {
+      filter: invert(1) brightness(0.9);
+    }
+
+    /* Iconos utilitarios nav */
+    .nav-icon-btn {
+      color: #e5e7eb;
+      background: transparent;
+      border: none;
+      position: relative;
+      font-size: 1.15rem;
+      padding: 6px;
+      transition: color 0.2s ease;
+    }
+    .nav-icon-btn:hover {
+      color: var(--gold-primary);
+    }
+    .cart-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--gold-primary);
+      color: #0b0c10;
+      font-size: 0.65rem;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 17px;
+      height: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Hero Section */
+    .hero-luxury {
+      position: relative;
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      background: radial-gradient(circle at 75% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+                  linear-gradient(180deg, rgba(11, 12, 16, 0.72) 0%, rgba(11, 12, 16, 0.94) 100%),
+                  url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZur9QSGQYk2LQaUd0mWhN_IXELmvOjG15onEAsw8QWzeLCrGUx7MTY46dMdZo2s0f_46xJOT702LNbi1pCW1zYlHQXTxJxM3QcIif6tfL04VE0qO93LYw2swFkpccXfMEGMwD-0257S37Tv2N7hNQFgUtiWk_JUo82EYw3xPUkmlxd8dfZ9bkIu3S98TE6QetX7zZM1Wz9i8O6Obpw4kR83EYSHEGtLeyy74CyQs') center center / cover no-repeat;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 6vw, 4.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      color: #ffffff;
+    }
+
+    .hero-title span {
+      background: linear-gradient(45deg, #d4af37, #fceda6, #c5a028);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Botones de Lujo optimizados para pulgar móvil (min 44px) */
+    .btn-gold {
+      background: linear-gradient(135deg, #d4af37 0%, #b89324 100%);
+      color: #0b0c10;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.8rem;
+      border: 1px solid var(--gold-primary);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #f5d76e 0%, #d4af37 100%);
+      color: #000000;
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-luxury {
+      background: transparent;
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-outline-luxury:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.05);
+      transform: translateY(-2px);
+    }
+
+    /* Tarjetas de Categoría / Género */
+    .gender-card {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+      text-decoration: none;
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .gender-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-primary);
+    }
+    .gender-card-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      z-index: 1;
+    }
+    .gender-card:hover .gender-card-bg {
+      transform: scale(1.06);
+    }
+    .gender-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11,12,16,0.1) 0%, rgba(11,12,16,0.85) 90%);
+      z-index: 2;
+    }
+    .gender-card-info {
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Píldoras de Filtro Catálogo */
+    .nav-pills-luxury .nav-link {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #9ca3af !important;
+      border-radius: 30px;
+      padding: 8px 22px !important;
+      margin: 4px 6px;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+    }
+    .nav-pills-luxury .nav-link.active {
+      background: var(--gold-primary);
+      color: #0b0c10 !important;
+      border-color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    /* Fichas de Producto */
+    .product-card {
+      background-color: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .product-card:hover {
+      border-color: var(--gold-primary);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transform: translateY(-5px);
+    }
+
+    .badge-collection {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(11, 12, 16, 0.85);
+      border: 1px solid var(--border-subtle);
+      color: var(--gold-primary);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 2px;
+      z-index: 3;
+      backdrop-filter: blur(4px);
+    }
+
+    .badge-edition {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(212, 175, 55, 0.2);
+      border: 1px solid var(--gold-primary);
+      color: #fff;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 2px;
+      z-index: 3;
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      background: #08090c;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+    }
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .product-card:hover .product-img {
+      transform: scale(1.08);
+    }
+
+    .product-body {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      background: linear-gradient(180deg, var(--bg-card) 0%, #101217 100%);
+    }
+
+    .product-brand {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--silver-accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .product-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      line-height: 1.25;
+    }
+
+    .product-specs {
+      font-size: 0.78rem;
+      color: var(--text-muted-custom);
+      margin-bottom: 1.1rem;
+    }
+
+    .product-footer {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .product-price {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      line-height: 1;
+    }
+
+    .btn-buy-card {
+      background-color: transparent;
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-primary);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.55rem 0.9rem;
+      border-radius: 2px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-buy-card:hover {
+      background-color: var(--gold-primary);
+      color: #0b0c10;
+    }
+
+    /* Sección Marcas de Alta Relojería */
+    .brands-section {
+      background-color: #08090c;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .brand-logo-card {
+      padding: 1.8rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 4px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .brand-logo-card:hover {
+      border-color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.04);
+    }
+    .brand-name-mark {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #d1d5db;
+    }
+
+    /* Pilares de Exclusividad / Garantía */
+    .feature-box {
+      padding: 2rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      text-align: center;
+      height: 100%;
+    }
+    .feature-icon-wrapper {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 1.25rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      font-size: 1.5rem;
+      background: rgba(212, 175, 55, 0.05);
+    }
+
+    /* Sección Reserva Privada / Asesoría */
+    .vip-banner {
+      background: linear-gradient(135deg, #161822 0%, #0d0e14 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 3rem 2rem;
+      position: relative;
+    }
+
+    /* Modal de Compra y Notificación Toast */
+    .modal-content-luxury {
+      background-color: var(--bg-card);
+      border: 1px solid var(--gold-primary);
+      color: #fff;
+    }
+    .toast-luxury {
+      background-color: #141720;
+      color: #fff;
+      border: 1px solid var(--gold-primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+
+    /* Footer de Lujo */
+    .footer-luxury {
+      background-color: #060709;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      color: #8b92a1;
+      font-size: 0.88rem;
+    }
+    .footer-luxury h5 {
+      font-family: var(--font-serif);
+      color: #ffffff;
+      font-size: 1.15rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: 0.6rem;
+    }
+    .footer-links a {
+      color: #9ca3af;
+      text-decoration: none;
+      transition: color 0.2s ease, padding-left 0.2s ease;
+      display: inline-block;
+    }
+    .footer-links a:hover {
+      color: var(--gold-primary);
+      padding-left: 4px;
+    }
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #d1d5db;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    .social-btn:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Adaptabilidad Mobile First específica */
+    @media (max-width: 576px) {
+      .hero-luxury {
+        min-height: 75vh;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+      }
+      .product-body {
+        padding: 1.1rem;
+      }
+      .product-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .btn-buy-card {
+        width: 100%;
+        justify-content: center;
+      }
+      .gender-card {
+        height: 220px;
+      }
+      .vip-banner {
+        padding: 2rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- =========================================================================
+       1. BARRA SUPERIOR INFORMATIVA
+       ========================================================================= -->
+<aside aria-label="Aviso comercial" class="top-announcement text-center">
+<div class="container d-flex justify-content-between align-items-center">
+<span class="d-none d-md-inline"><i class="bi bi-shield-check text-warning me-1"></i> Garantía Internacional de 5 Años</span>
+<span class="mx-auto mx-md-0"><i class="bi bi-airplane me-1 text-warning"></i> Envío Blindado y Asegurado a Nivel Mundial</span>
+<span class="d-none d-lg-inline"><i class="bi bi-clock-history me-1 text-warning"></i> Cita Privada en Boutique</span>
+</div>
+</aside>
+<!-- =========================================================================
+       2. ENCABEZADO Y MENÚ DE NAVEGACIÓN (HEADER & NAV RESPONSIVE)
+       ========================================================================= -->
+<header class="sticky-top" role="banner">
+<nav aria-label="Menú principal de la boutique" class="navbar navbar-expand-lg navbar-dark navbar-luxury">
+<div class="container">
+<!-- Logotipo / Emblema -->
+<a class="navbar-brand" href="#inicio" title="Aurelia &amp; Chronos Haute Horlogerie">
+<i aria-hidden="true" class="bi bi-gem brand-crown"></i>
+<span>AURELIA &amp; CHRONOS</span>
+</a>
+<!-- Botón Menú Hamburguesa para Móviles -->
+<button aria-controls="navbarMain" aria-expanded="false" aria-label="Alternar menú de navegación" class="navbar-toggler" data-bs-target="#navbarMain" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Enlaces colapsables -->
+<div class="collapse navbar-collapse" id="navbarMain">
+<ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center text-lg-start">
+<li class="nav-item">
+<a class="nav-link active" href="#inicio">Inicio</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#catalogo">Catálogo</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#hombres">Hombres</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#mujeres">Mujeres</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#colecciones">Colecciones</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#marcas">Marcas</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#contacto">Contacto</a>
+</li>
+</ul>
+<!-- Acciones directas (Búsqueda, Lista de deseos, Carrito de compra) -->
+<div class="d-flex justify-content-center align-items-center gap-3 pt-3 pt-lg-0 border-top border-lg-0 border-secondary">
+<button aria-label="Buscar en la tienda" class="nav-icon-btn" onclick="alert('Buscador activo: introduce referencia de reloj o modelo')" title="Buscar reloj">
+<i class="bi bi-search"></i>
+</button>
+<button aria-label="Relojes favoritos" class="nav-icon-btn" onclick="alert('Tienes 2 piezas en tu lista de deseos de alta gama')" title="Favoritos guardados">
+<i class="bi bi-heart"></i>
+</button>
+<button aria-label="Bolsa de compras" class="nav-icon-btn" data-bs-target="#cartModal" data-bs-toggle="modal" title="Cesta de compra">
+<i class="bi bi-bag"></i>
+<span class="cart-badge" id="cartCounter">1</span>
+</button>
+<a class="btn btn-sm btn-gold d-none d-xl-inline-flex ms-2" href="#contacto">
+              Concierge VIP
+            </a>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<main role="main">
+<!-- =========================================================================
+         3. HERO / PORTADA CON LLAMADA A LA ACCIÓN (CTA)
+         ========================================================================= -->
+<section aria-labelledby="heroTitle" class="hero-luxury" id="inicio">
+<div class="container hero-content py-5">
+<div class="row align-items-center">
+<div class="col-12 col-md-10 col-lg-7">
+<p class="sub-title-track mb-2">
+<i class="bi bi-award me-1"></i> Maestría en Alta Relojería Suiza
+            </p>
+<h1 class="hero-title" id="heroTitle">
+              La perfección del <span>tiempo</span> hecha arte.
+            </h1>
+<p class="lead text-light opacity-90 mb-4 fw-light" style="max-width: 540px; font-size: 1.05rem;">
+              Descubra una curaduría exclusiva de cronógrafos mecánicos, tourbillons y joyas relojeras para coleccionistas distinguidos. Precisión eterna en su muñeca.
+            </p>
+<div class="d-flex flex-column flex-sm-row gap-3">
+<a class="btn btn-gold shadow" href="#catalogo">
+                Explorar Catálogo 2025 <i class="bi bi-arrow-right ms-2"></i>
+</a>
+<a class="btn btn-outline-luxury" href="#vip">
+                Agendar Asesor Privado
+              </a>
+</div>
+<!-- Datos de confianza -->
+<div class="row mt-5 pt-3 border-top border-secondary border-opacity-25 g-3">
+<div class="col-4">
+<div class="price-display text-warning fs-4 fw-bold">100%</div>
+<div class="small text-muted-custom" style="font-size: 0.72rem; text-transform: uppercase;">Autenticidad Certificada</div>
+</div>
+<div class="col-4">
+<div class="price-display text-warning fs-4 fw-bold">+45</div>
+<div class="small text-muted-custom" style="font-size: 0.72rem; text-transform: uppercase;">Años de Tradición</div>
+</div>
+<div class="col-4">
+<div class="price-display text-warning fs-4 fw-bold">Geneva</div>
+<div class="small text-muted-custom" style="font-size: 0.72rem; text-transform: uppercase;">Sello de Calidad</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         4. ACCESO RÁPIDO SEGMENTADO: HOMBRES & MUJERES
+         ========================================================================= -->
+<section class="py-5 bg-dark">
+<div class="container">
+<div class="row g-4">
+<!-- Segmento Hombres -->
+<div class="col-12 col-md-6" id="hombres">
+<a class="gender-card" href="#catalogo" onclick="filterCatalog('hombres')">
+<img alt="Colección de Relojes de Lujo para Hombres con acabado en acero y cuero" class="gender-card-bg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI9qgXMdUH1S21oJ-aSk9u-s1FOoihoQcb5CRQRGxzaYiNkgbOa075OMBkvBjDPTBhVCxeOAW0zNBNtze3PiLWApVgjl8zBtgi5pWMpe80P-YB78sFwwbtPCE1hMDDcgdkLNo2Ts6JcTYRCuRV4It_BLBGxDdg3ShkHRTz35NOFih8-aKJLY8MYxG2fNy5XPlcyXNncVwebfPqxeDd2NYFzsYC49vUm3nwPzTRZb0"/>
+<div class="gender-card-overlay"></div>
+<div class="gender-card-info">
+<span class="sub-title-track">Colección Masculina</span>
+<h2 class="h3 text-white mb-2">Cronógrafos &amp; Alta Complicación</h2>
+<span class="btn btn-sm btn-outline-luxury mt-1">Ver Selección para Hombres <i class="bi bi-chevron-right ms-1"></i></span>
+</div>
+</a>
+</div>
+<!-- Segmento Mujeres -->
+<div class="col-12 col-md-6" id="mujeres">
+<a class="gender-card" href="#catalogo" onclick="filterCatalog('mujeres')">
+<img alt="Colección de Relojes de Lujo para Mujeres engastados con diamantes y oro rosa" class="gender-card-bg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWCe1Btxlo7UsfvZv7TMkXY498E6ACmyN9rd-ZsYcZNASd51HnjOTaIrW4WSGp7NgTC_SGBeRa0XbY0_zT6bl8pkoZaOvMVXpw6MS2FBJo-gv9nHVdPs3uUQIaA_K4skIpBRQAOuuvFWoBcjUu65nfN-8bXbrhDYH02VSB9PIpd5tMVzB5kf6l0kyclvhUbEWFpVTU_uS_y63njfR1xFLlkHzlRom_1HofPEj3M8w"/>
+<div class="gender-card-overlay"></div>
+<div class="gender-card-info">
+<span class="sub-title-track">Colección Femenina</span>
+<h2 class="h3 text-white mb-2">Joyas Horológicas &amp; Oro Rosa</h2>
+<span class="btn btn-sm btn-outline-luxury mt-1">Ver Selección para Mujeres <i class="bi bi-chevron-right ms-1"></i></span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         5. CATÁLOGO COMPLETO DE PRODUCTOS (SEGMENTADO Y RESPONSIVE)
+         ========================================================================= -->
+<section aria-labelledby="catalogTitle" class="py-5" id="catalogo">
+<div class="container">
+<!-- Cabecera de la sección -->
+<div class="text-center max-w-xl mx-auto mb-4">
+<p class="sub-title-track mb-1">Catálogo Exclusivo</p>
+<h2 class="display-6 fw-bold text-white" id="catalogTitle">Piezas Maestras Disponibles</h2>
+<div class="mx-auto mt-2" style="width: 60px; height: 2px; background-color: var(--gold-primary);"></div>
+</div>
+<!-- Filtros interactivos -->
+<div class="d-flex justify-content-center mb-5">
+<ul class="nav nav-pills nav-pills-luxury justify-content-center" id="pills-tab" role="tablist">
+<li class="nav-item" role="presentation">
+<button class="nav-link active" id="btn-all" onclick="filterCatalog('all')" type="button">Todas las Piezas</button>
+</li>
+<li class="nav-item" role="presentation">
+<button class="nav-link" id="btn-men" onclick="filterCatalog('hombres')" type="button">Hombres</button>
+</li>
+<li class="nav-item" role="presentation">
+<button class="nav-link" id="btn-women" onclick="filterCatalog('mujeres')" type="button">Mujeres</button>
+</li>
+<li class="nav-item" role="presentation">
+<button class="nav-link" id="btn-limited" onclick="filterCatalog('edicion-limitada')" type="button">Edición Limitada</button>
+</li>
+</ul>
+</div>
+<!-- Grilla de Productos (1 col en móvil muy pequeño, 2 cols en móvil regular, 3 en tablet, 4 en desktop) -->
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4" id="productsGrid">
+<!-- PRODUCTO 1: HOMBRE -->
+<div class="col product-item filter-hombres">
+<article aria-label="Reloj Chronos Royal Sovereign" class="product-card">
+<span class="badge-collection">Hombre</span>
+<span class="badge-edition">Automático</span>
+<div class="product-img-wrapper">
+<img alt="Reloj Vacheron Geneve Royal Sovereign en acero 904L con esfera negra y cronógrafo" class="product-img" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsN5h1yHi3baoUi_9o-imKNEjw5fw1P3c5-VrEfdrt9w1S0jLOMReJze4vV8j4S6nFHB2Z4XVThKDEqwpdqGRrVp5y_AQIfbUzBQ68Wir8xoFz757-rFL69j_e5T-aq-zYwk3woISJgrYBKCTz1EjRpoHD0h4IdMCzZPhhnIjzlyCfiC8VfHr8Mv6mBdM8i_gZdeb27H8JFDo_8GAxtYw4caYf2y1zrHdMHqYsWY0"/>
+</div>
+<div class="product-body">
+<div class="product-brand">Vacheron Geneve</div>
+<h3 class="product-title">Royal Sovereign 42mm</h3>
+<div class="product-specs">
+<span>Caja Acero 904L • Reserva 72h • Zafiro Antirreflejo</span>
+</div>
+<div class="product-footer">
+<div>
+<small class="text-muted d-block" style="font-size: 0.68rem; text-transform: uppercase;">Precio Exclusivo</small>
+<span class="product-price">$18,450</span>
+</div>
+<button class="btn btn-buy-card" onclick="addToCart('Royal Sovereign 42mm', 18450)" title="Adquirir esta pieza">
+<i class="bi bi-bag-plus"></i> Comprar
+                  </button>
+</div>
+</div>
+</article>
+</div>
+<!-- PRODUCTO 2: MUJER -->
+<div class="col product-item filter-mujeres filter-edicion-limitada">
+<article aria-label="Reloj Aurelia Reine de Versailles" class="product-card">
+<span class="badge-collection">Mujer</span>
+<span class="badge-edition">Oro Rosa 18K</span>
+<div class="product-img-wrapper">
+<img alt="Reloj joya Aurelia Haute Reine de Versailles en oro rosa 18K con diamantes y esfera de nácar" class="product-img" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs8WfN5-E4jcmxebmjn3U51mI475iHQ_WReDGYFqPDVXubsIRa3JjZiIOb5e-hkifLn7YhVPfxC6M-toYsrSjlyY0JD8FvKE4YOkJfPdD0J5rY1o_KoQlW20iNpKG3pMne-S83JwUv7qWjzavMjjfLiwNWqMp-qj2a4u9Unc6CQMhYfcvts4SmD5-pUG6nsWrrpUxxy7Gcp2SIVYlsLlONEHaCg1ggjC42UGD8w6E"/>
+</div>
+<div class="product-body">
+<div class="product-brand">Aurelia Haute</div>
+<h3 class="product-title">Reine de Versailles 34mm</h3>
+<div class="product-specs">
+<span>Bisel 48 Diamantes • Esfera Nácar • Movimiento Cal. 104</span>
+</div>
+<div class="product-footer">
+<div>
+<small class="text-muted d-block" style="font-size: 0.68rem; text-transform: uppercase;">Precio Exclusivo</small>
+<span class="product-price">$26,800</span>
+</div>
+<button class="btn btn-buy-card" onclick="addToCart('Reine de Versailles 34mm', 26800)" title="Adquirir esta pieza">
+<i class="bi bi-bag-plus"></i> Comprar
+                  </button>
+</div>
+</div>
+</article>
+</div>
+<!-- PRODUCTO 3: HOMBRE -->
+<div class="col product-item filter-hombres filter-edicion-limitada">
+<article aria-label="Reloj Chronos Nautilus Deep Diver" class="product-card">
+<span class="badge-collection">Hombre</span>
+<span class="badge-edition">Edición 500 pzs</span>
+<div class="product-img-wrapper">
+<img alt="Cronógrafo deportivo Audemars &amp; Cie Nautilus en titanio grado 5" class="product-img" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIWFRsEDW1udkYG5QL98JIZyeUt9g3REyNuWPXNuj4l1w1Ey6JoVVECUsVurcVSz0ySzjiMW-SclNrmHKs_zOyi-12UtVe_osVpZa8h_lEHXstTj8ULLhrQbqZwDtHz5AfW1yLBcgNbbRcno7oehkfa42bEohxziZmPS13p5VvsHAQRYyoVuim-7fM-S0SuvNdiSBO38THP5JNIBEd0CNTiTS9PnXA69HNZBQQJHk"/>
+</div>
+<div class="product-body">
+<div class="product-brand">Audemars &amp; Cie</div>
+<h3 class="product-title">Nautilus Titanium Chrono</h3>
+<div class="product-specs">
+<span>Caja Titanio Grado 5 • Hermético 300m • Calibre Crono Flyback</span>
+</div>
+<div class="product-footer">
+<div>
+<small class="text-muted d-block" style="font-size: 0.68rem; text-transform: uppercase;">Precio Exclusivo</small>
+<span class="product-price">$34,200</span>
+</div>
+<button class="btn btn-buy-card" onclick="addToCart('Nautilus Titanium Chrono', 34200)" title="Adquirir esta pieza">
+<i class="bi bi-bag-plus"></i> Comprar
+                  </button>
+</div>
+</div>
+</article>
+</div>
+<!-- PRODUCTO 4: MUJER -->
+<div class="col product-item filter-mujeres">
+<article aria-label="Reloj Aurelia Étoile Minimaliste" class="product-card">
+<span class="badge-collection">Mujer</span>
+<span class="badge-edition">Platino 950</span>
+<div class="product-img-wrapper">
+<img alt="Reloj Breguet Atelier Étoile Blanche en platino 950 con esfera azul rayos de sol" class="product-img" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTp_CNLkfUQOimDGZ6_1yP857VvzfgGr5UEPxkzg4gvxVQhwcDzZMZPyUs6Q6zCSwafy2UABdnR7W681sveb8t_3rwHgTXhbUBU-mlvHn81ldLXv58Rifd5sCn0cs2Oht4lvl2ZKcHmlk5GfxM2QNEPjJUDPnY114QZVu2eT6DjipgRQuLm9kscMSzS9uExT2fGc53DZXt2AOX3XX6foI0kvtY0l-UoI9WJtwdgmE"/>
+</div>
+<div class="product-body">
+<div class="product-brand">Breguet Atelier</div>
+<h3 class="product-title">Étoile Blanche 31mm</h3>
+<div class="product-specs">
+<span>Platino Puro • Correa Aligátor Azul • Cristal de Doble Domo</span>
+</div>
+<div class="product-footer">
+<div>
+<small class="text-muted d-block" style="font-size: 0.68rem; text-transform: uppercase;">Precio Exclusivo</small>
+<span class="product-price">$15,900</span>
+</div>
+<button class="btn btn-buy-card" onclick="addToCart('Étoile Blanche 31mm', 15900)" title="Adquirir esta pieza">
+<i class="bi bi-bag-plus"></i> Comprar
+                  </button>
+</div>
+</div>
+</article>
+</div>
+<!-- PRODUCTO 5: HOMBRE -->
+<div class="col product-item filter-hombres">
+<article aria-label="Reloj Chronos Heritage Tourbillon" class="product-card">
+<span class="badge-collection">Hombre</span>
+<span class="badge-edition">Tourbillon</span>
+<div class="product-img-wrapper">
+<img alt="Reloj con complicaciones de esfera esqueletada y mecanismo tourbillon expuesto para hombre" class="product-img" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZur9QSGQYk2LQaUd0mWhN_IXELmvOjG15onEAsw8QWzeLCrGUx7MTY46dMdZo2s0f_46xJOT702LNbi1pCW1zYlHQXTxJxM3QcIif6tfL04VE0qO93LYw2swFkpccXfMEGMwD-0257S37Tv2N7hNQFgUtiWk_JUo82EYw3xPUkmlxd8dfZ9bkIu3S98TE6QetX7zZM1Wz9i8O6Obpw4kR83EYSHEGtLeyy74CyQs"/>
+</div>
+<div class="product-body">
+<div class="product-brand">Patek Atelier</div>
+<h3 class="product-title">Heritage Tourbillon Openwork</h3>
+<div class="product-specs">
+<span>Esqueleto Pulido a Mano • Oro Blanco 18K • Remonte Manual</span>
+</div>
+<div class="product-footer">
+<div>
+<small class="text-muted d-block" style="font-size: 0.68rem; text-transform: uppercase;">Precio Exclusivo</small>
+<span class="product-price">$89,000</span>
+</div>
+<button class="btn btn-buy-card" onclick="addToCart('Heritage Tourbillon Openwork', 89000)" title="Adquirir esta pieza">
+<i class="bi bi-bag-plus"></i> Comprar
+                  </button>
+</div>
+</div>
+</article>
+</div>
+<!-- PRODUCTO 6: MUJER -->
+<div class="col product-item filter-mujeres filter-edicion-limitada">
+<article aria-label="Reloj Aurelia Serpente Di Smeraldo" class="product-card">
+<span class="badge-collection">Mujer</span>
+<span class="badge-edition">Alta Joyería</span>
+<div class="product-img-wrapper">
+<img alt="Reloj de oro para mujer con esmeraldas incrustadas y brazalete flexible de alta joyería" class="product-img" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs8WfN5-E4jcmxebmjn3U51mI475iHQ_WReDGYFqPDVXubsIRa3JjZiIOb5e-hkifLn7YhVPfxC6M-toYsrSjlyY0JD8FvKE4YOkJfPdD0J5rY1o_KoQlW20iNpKG3pMne-S83JwUv7qWjzavMjjfLiwNWqMp-qj2a4u9Unc6CQMhYfcvts4SmD5-pUG6nsWrrpUxxy7Gcp2SIVYlsLlONEHaCg1ggjC42UGD8w6E"/>
+</div>
+<div class="product-body">
+<div class="product-brand">Cartier Horloger</div>
+<h3 class="product-title">Serpente Di Smeraldo</h3>
+<div class="product-specs">
+<span>Esmeraldas Colombianas • Brazalete Tubogas • Oro Amarillo 18K</span>
+</div>
+<div class="product-footer">
+<div>
+<small class="text-muted d-block" style="font-size: 0.68rem; text-transform: uppercase;">Precio Exclusivo</small>
+<span class="product-price">$41,500</span>
+</div>
+<button class="btn btn-buy-card" onclick="addToCart('Serpente Di Smeraldo', 41500)" title="Adquirir esta pieza">
+<i class="bi bi-bag-plus"></i> Comprar
+                  </button>
+</div>
+</div>
+</article>
+</div>
+<!-- PRODUCTO 7: HOMBRE -->
+<div class="col product-item filter-hombres">
+<article aria-label="Reloj Chronos Moonphase Calendar" class="product-card">
+<span class="badge-collection">Hombre</span>
+<span class="badge-edition">Fase Lunar</span>
+<div class="product-img-wrapper">
+<img alt="Reloj clásico de hombre con indicador de fase lunar, calendario perpetuo y correa de piel marrón" class="product-img" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsN5h1yHi3baoUi_9o-imKNEjw5fw1P3c5-VrEfdrt9w1S0jLOMReJze4vV8j4S6nFHB2Z4XVThKDEqwpdqGRrVp5y_AQIfbUzBQ68Wir8xoFz757-rFL69j_e5T-aq-zYwk3woISJgrYBKCTz1EjRpoHD0h4IdMCzZPhhnIjzlyCfiC8VfHr8Mv6mBdM8i_gZdeb27H8JFDo_8GAxtYw4caYf2y1zrHdMHqYsWY0"/>
+</div>
+<div class="product-body">
+<div class="product-brand">Jaeger LeCoultre</div>
+<h3 class="product-title">Master Moonphase Calendar</h3>
+<div class="product-specs">
+<span>Calendario Perpetuo • Disco de Lapislázuli • Cuero Alligator</span>
+</div>
+<div class="product-footer">
+<div>
+<small class="text-muted d-block" style="font-size: 0.68rem; text-transform: uppercase;">Precio Exclusivo</small>
+<span class="product-price">$22,700</span>
+</div>
+<button class="btn btn-buy-card" onclick="addToCart('Master Moonphase Calendar', 22700)" title="Adquirir esta pieza">
+<i class="bi bi-bag-plus"></i> Comprar
+                  </button>
+</div>
+</div>
+</article>
+</div>
+<!-- PRODUCTO 8: MUJER -->
+<div class="col product-item filter-mujeres">
+<article aria-label="Reloj Aurelia Riviera Glamour" class="product-card">
+<span class="badge-collection">Mujer</span>
+<span class="badge-edition">Casual Chic</span>
+<div class="product-img-wrapper">
+<img alt="Reloj de dama con bisel de zafiros azules y caja geométrica de acero cepillado" class="product-img" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTp_CNLkfUQOimDGZ6_1yP857VvzfgGr5UEPxkzg4gvxVQhwcDzZMZPyUs6Q6zCSwafy2UABdnR7W681sveb8t_3rwHgTXhbUBU-mlvHn81ldLXv58Rifd5sCn0cs2Oht4lvl2ZKcHmlk5GfxM2QNEPjJUDPnY114QZVu2eT6DjipgRQuLm9kscMSzS9uExT2fGc53DZXt2AOX3XX6foI0kvtY0l-UoI9WJtwdgmE"/>
+</div>
+<div class="product-body">
+<div class="product-brand">Chopard Imperial</div>
+<h3 class="product-title">Riviera Sapphire Dream</h3>
+<div class="product-specs">
+<span>Zafiros Azules Naturales • Resistencia al Agua 50m • Acero &amp; Oro</span>
+</div>
+<div class="product-footer">
+<div>
+<small class="text-muted d-block" style="font-size: 0.68rem; text-transform: uppercase;">Precio Exclusivo</small>
+<span class="product-price">$19,200</span>
+</div>
+<button class="btn btn-buy-card" onclick="addToCart('Riviera Sapphire Dream', 19200)" title="Adquirir esta pieza">
+<i class="bi bi-bag-plus"></i> Comprar
+                  </button>
+</div>
+</div>
+</article>
+</div>
+</div>
+<!-- Banner de catálogo ampliado -->
+<div class="text-center mt-5">
+<p class="text-muted-custom mb-3">¿Busca un modelo histórico o una referencia específica de coleccionista?</p>
+<a class="btn btn-outline-luxury" href="#contacto">
+<i class="bi bi-journal-bookmark me-2"></i> Solicitar Catálogo Privado Completo
+          </a>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         6. SECCIÓN DE COLECCIONES DESTACADAS
+         ========================================================================= -->
+<section class="py-5 bg-dark border-top border-secondary border-opacity-10" id="colecciones">
+<div class="container">
+<div class="text-center mb-5">
+<p class="sub-title-track mb-1">Linaje &amp; Distinción</p>
+<h2 class="display-6 fw-bold text-white">Nuestras Colecciones Emblemáticas</h2>
+<div class="mx-auto mt-2" style="width: 60px; height: 2px; background-color: var(--gold-primary);"></div>
+</div>
+<div class="row g-4">
+<!-- Colección 1 -->
+<div class="col-12 col-md-4">
+<div class="card bg-black border-secondary border-opacity-25 h-100 overflow-hidden">
+<img alt="Detalle macro de engranajes y caja de reloj de la colección Chronos Heritage" class="card-img-top" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZur9QSGQYk2LQaUd0mWhN_IXELmvOjG15onEAsw8QWzeLCrGUx7MTY46dMdZo2s0f_46xJOT702LNbi1pCW1zYlHQXTxJxM3QcIif6tfL04VE0qO93LYw2swFkpccXfMEGMwD-0257S37Tv2N7hNQFgUtiWk_JUo82EYw3xPUkmlxd8dfZ9bkIu3S98TE6QetX7zZM1Wz9i8O6Obpw4kR83EYSHEGtLeyy74CyQs" style="height: 220px; object-fit: cover;"/>
+<div class="card-body p-4">
+<span class="sub-title-track">Línea Mecánica</span>
+<h3 class="h4 text-white mt-1 mb-2">Chronos Grand Complication</h3>
+<p class="text-muted-custom small mb-4">Piezas con tourbillons volantes, calendarios perpetuos y repetición de minutos grabadas por maestros artesanos suizos.</p>
+<a class="text-warning text-decoration-none small text-uppercase fw-bold letter-spacing-1" href="#catalogo">Explorar Línea <i class="bi bi-arrow-right"></i></a>
+</div>
+</div>
+</div>
+<!-- Colección 2 -->
+<div class="col-12 col-md-4">
+<div class="card bg-black border-secondary border-opacity-25 h-100 overflow-hidden">
+<img alt="Detalle de pulsera de oro rosa y diamantes de la colección Reine Bijoux" class="card-img-top" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs8WfN5-E4jcmxebmjn3U51mI475iHQ_WReDGYFqPDVXubsIRa3JjZiIOb5e-hkifLn7YhVPfxC6M-toYsrSjlyY0JD8FvKE4YOkJfPdD0J5rY1o_KoQlW20iNpKG3pMne-S83JwUv7qWjzavMjjfLiwNWqMp-qj2a4u9Unc6CQMhYfcvts4SmD5-pUG6nsWrrpUxxy7Gcp2SIVYlsLlONEHaCg1ggjC42UGD8w6E" style="height: 220px; object-fit: cover;"/>
+<div class="card-body p-4">
+<span class="sub-title-track">Alta Joyería</span>
+<h3 class="h4 text-white mt-1 mb-2">Reine Bijoux &amp; Diamants</h3>
+<p class="text-muted-custom small mb-4">La convergencia entre la micro-mecánica de precisión y la orfebrería más fina del mundo con gemas de pureza VVS1.</p>
+<a class="text-warning text-decoration-none small text-uppercase fw-bold letter-spacing-1" href="#catalogo">Explorar Línea <i class="bi bi-arrow-right"></i></a>
+</div>
+</div>
+</div>
+<!-- Colección 3 -->
+<div class="col-12 col-md-4">
+<div class="card bg-black border-secondary border-opacity-25 h-100 overflow-hidden">
+<img alt="Reloj cronógrafo en pista marina de la colección Aqua Sport" class="card-img-top" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIWFRsEDW1udkYG5QL98JIZyeUt9g3REyNuWPXNuj4l1w1Ey6JoVVECUsVurcVSz0ySzjiMW-SclNrmHKs_zOyi-12UtVe_osVpZa8h_lEHXstTj8ULLhrQbqZwDtHz5AfW1yLBcgNbbRcno7oehkfa42bEohxziZmPS13p5VvsHAQRYyoVuim-7fM-S0SuvNdiSBO38THP5JNIBEd0CNTiTS9PnXA69HNZBQQJHk" style="height: 220px; object-fit: cover;"/>
+<div class="card-body p-4">
+<span class="sub-title-track">Deporte de Élite</span>
+<h3 class="h4 text-white mt-1 mb-2">Aqua Dynamic Titanium</h3>
+<p class="text-muted-custom small mb-4">Cronómetros ultraligeros forjados en titanio aeronáutico y carbón forjado, diseñados para resistir las condiciones oceánicas extremas.</p>
+<a class="text-warning text-decoration-none small text-uppercase fw-bold letter-spacing-1" href="#catalogo">Explorar Línea <i class="bi bi-arrow-right"></i></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         7. SECCIÓN DE MARCAS DE ALTA RELOJERÍA (PARTNERS & MANUFACTURAS)
+         ========================================================================= -->
+<section class="brands-section py-5" id="marcas">
+<div class="container">
+<div class="text-center mb-4">
+<p class="sub-title-track mb-1">Manufacturas Oficiales</p>
+<h2 class="h3 text-white">Casas Relojeras Representadas</h2>
+<p class="text-muted small">Distribuidores autorizados con certificado de origen de Ginebra, Le Locle y Glashütte.</p>
+</div>
+<div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
+<div class="col">
+<div class="brand-logo-card">
+<div class="brand-name-mark">VACHERON</div>
+<small class="text-muted" style="font-size: 0.65rem;">GENÈVE 1755</small>
+</div>
+</div>
+<div class="col">
+<div class="brand-logo-card">
+<div class="brand-name-mark">PATEK</div>
+<small class="text-muted" style="font-size: 0.65rem;">PHILIPPE</small>
+</div>
+</div>
+<div class="col">
+<div class="brand-logo-card">
+<div class="brand-name-mark">AUDEMARS</div>
+<small class="text-muted" style="font-size: 0.65rem;">LE BRASSUS</small>
+</div>
+</div>
+<div class="col">
+<div class="brand-logo-card">
+<div class="brand-name-mark">BREGUET</div>
+<small class="text-muted" style="font-size: 0.65rem;">PARIS 1775</small>
+</div>
+</div>
+<div class="col">
+<div class="brand-logo-card">
+<div class="brand-name-mark">JAEGER</div>
+<small class="text-muted" style="font-size: 0.65rem;">LECOULTRE</small>
+</div>
+</div>
+<div class="col">
+<div class="brand-logo-card">
+<div class="brand-name-mark">AURELIA</div>
+<small class="text-muted" style="font-size: 0.65rem;">PRIVATE LABEL</small>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         8. PILARES DE CONFIANZA Y GARANTÍA (EXCLUSIVIDAD)
+         ========================================================================= -->
+<section class="py-5 bg-dark">
+<div class="container">
+<div class="row g-4">
+<div class="col-12 col-sm-6 col-lg-3">
+<div class="feature-box">
+<div class="feature-icon-wrapper">
+<i class="bi bi-patch-check"></i>
+</div>
+<h4 class="h5 text-white mb-2">Autenticidad 100%</h4>
+<p class="text-muted-custom small mb-0">Cada reloj se entrega con su estuche original, tarjeta de garantía internacional numerada y microchip NFC antifraude.</p>
+</div>
+</div>
+<div class="col-12 col-sm-6 col-lg-3">
+<div class="feature-box">
+<div class="feature-icon-wrapper">
+<i class="bi bi-shield-lock"></i>
+</div>
+<h4 class="h5 text-white mb-2">Custodia y Envío Seguro</h4>
+<p class="text-muted-custom small mb-0">Transporte blindado con escolta y póliza de seguro a valor total declarado hasta la entrega en sus manos.</p>
+</div>
+</div>
+<div class="col-12 col-sm-6 col-lg-3">
+<div class="feature-box">
+<div class="feature-icon-wrapper">
+<i class="bi bi-gem"></i>
+</div>
+<h4 class="h5 text-white mb-2">Servicio de Taller Maestro</h4>
+<p class="text-muted-custom small mb-0">Mantenimiento preventivo gratuito durante los primeros 3 años con maestros relojeros diplomados en Suiza.</p>
+</div>
+</div>
+<div class="col-12 col-sm-6 col-lg-3">
+<div class="feature-box">
+<div class="feature-icon-wrapper">
+<i class="bi bi-person-badge"></i>
+</div>
+<h4 class="h5 text-white mb-2">Atención Concierge 24/7</h4>
+<p class="text-muted-custom small mb-0">Un especialista personal dedicado a responder sus consultas y organizar citas exclusivas en su residencia.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         9. SECCIÓN VIP / FORMULARIO DE CONTACTO Y ASESORÍA PRIVADA
+         ========================================================================= -->
+<section class="py-5" id="vip" style="background-color: #0b0c10;">
+<div class="container">
+<div class="vip-banner">
+<div class="row align-items-center g-4">
+<div class="col-12 col-lg-6">
+<span class="sub-title-track">Experiencia Privada</span>
+<h2 class="display-6 fw-bold text-white mb-3">Reserve su Consulta Privada</h2>
+<p class="text-light opacity-90 mb-4">
+                Permita que nuestros maestros relojeros le asesoren en la adquisición de su próxima pieza de inversión. Disponemos de salas VIP privadas en Madrid, Ginebra, Ciudad de México y Miami.
+              </p>
+<ul class="list-unstyled text-muted-custom small">
+<li class="mb-2"><i class="bi bi-check2 text-warning me-2"></i> Presentación de piezas no publicadas en catálogo público.</li>
+<li class="mb-2"><i class="bi bi-check2 text-warning me-2"></i> Evaluación y peritaje de relojes antiguos de colección.</li>
+<li class="mb-2"><i class="bi bi-check2 text-warning me-2"></i> Financiación discreta y pago mediante fideicomiso.</li>
+</ul>
+</div>
+<!-- Formulario de contacto responsive -->
+<div class="col-12 col-lg-6" id="contacto">
+<div class="bg-black p-4 p-sm-5 rounded border border-secondary border-opacity-25 shadow-lg">
+<h3 class="h4 text-white mb-3">Solicitar Contacto con un Concierge</h3>
+<form id="contactForm" onsubmit="handleContactSubmit(event)">
+<div class="mb-3">
+<label class="form-label text-muted small text-uppercase" for="fullName">Nombre y Apellidos *</label>
+<input class="form-control bg-dark text-white border-secondary" id="fullName" placeholder="Sr./Sra. Nombre" required="" type="text"/>
+</div>
+<div class="row g-2 mb-3">
+<div class="col-12 col-sm-6">
+<label class="form-label text-muted small text-uppercase" for="email">Correo Electrónico *</label>
+<input class="form-control bg-dark text-white border-secondary" id="email" placeholder="correo@ejemplo.com" required="" type="email"/>
+</div>
+<div class="col-12 col-sm-6">
+<label class="form-label text-muted small text-uppercase" for="phone">Teléfono de Contacto *</label>
+<input class="form-control bg-dark text-white border-secondary" id="phone" placeholder="+34 600 000 000" required="" type="tel"/>
+</div>
+</div>
+<div class="mb-3">
+<label class="form-label text-muted small text-uppercase" for="interest">Interés de Colección</label>
+<select class="form-select bg-dark text-white border-secondary" id="interest">
+<option value="hombre">Relojes Masculinos de Gran Complicación</option>
+<option value="mujer">Relojes Femeninos de Alta Joyería</option>
+<option value="inversion">Piezas Raras / Inversión de Colección</option>
+<option value="cita">Visita Privada a Boutique</option>
+</select>
+</div>
+<div class="mb-4">
+<label class="form-label text-muted small text-uppercase" for="notes">Mensaje o Referencia Solicitada</label>
+<textarea class="form-control bg-dark text-white border-secondary" id="notes" placeholder="Indique si busca una pieza específica o preferencia de fecha" rows="2"></textarea>
+</div>
+<button class="btn btn-gold w-100" type="submit">
+<i class="bi bi-send me-2"></i> Solicitar Asesoría Personalizada
+                  </button>
+<div class="text-center mt-3">
+<small class="text-muted" style="font-size: 0.7rem;">
+<i class="bi bi-lock me-1"></i> Garantizamos total confidencialidad bajo estrictas normas suizas de privacidad.
+                    </small>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- =========================================================================
+       10. PIE DE PÁGINA (FOOTER COMPLETO)
+       ========================================================================= -->
+<footer class="footer-luxury pt-5 pb-4" role="contentinfo">
+<div class="container">
+<div class="row g-4 pb-4">
+<!-- Columna 1: Marca y Filosofía -->
+<div class="col-12 col-md-4">
+<div class="d-flex align-items-center gap-2 mb-3">
+<i class="bi bi-gem text-warning fs-4"></i>
+<span class="brand-font fs-4 text-white fw-bold">AURELIA &amp; CHRONOS</span>
+</div>
+<p class="text-muted-custom small mb-4 pe-lg-3">
+            Emblema de la alta relojería internacional. Desde 1980 preservamos el legado de las manufacturas independientes y ofrecemos piezas maestras con certificado de origen indiscutible.
+          </p>
+<div class="d-flex align-items-center">
+<a aria-label="Instagram de Aurelia &amp; Chronos" class="social-btn" href="#"><i class="bi bi-instagram"></i></a>
+<a aria-label="YouTube" class="social-btn" href="#"><i class="bi bi-youtube"></i></a>
+<a aria-label="LinkedIn" class="social-btn" href="#"><i class="bi bi-linkedin"></i></a>
+<a aria-label="Facebook" class="social-btn" href="#"><i class="bi bi-facebook"></i></a>
+</div>
+</div>
+<!-- Columna 2: Navegación de Alta Gama -->
+<div class="col-6 col-md-2">
+<h5>Catálogo</h5>
+<ul class="footer-links">
+<li><a href="#hombres">Relojes Hombre</a></li>
+<li><a href="#mujeres">Relojes Mujer</a></li>
+<li><a href="#catalogo">Tourbillons</a></li>
+<li><a href="#catalogo">Edición Limitada</a></li>
+<li><a href="#colecciones">Fase Lunar</a></li>
+<li><a href="#catalogo">Accesorios y Estuches</a></li>
+</ul>
+</div>
+<!-- Columna 3: Servicios & Boutique -->
+<div class="col-6 col-md-3">
+<h5>Servicios Exclusivos</h5>
+<ul class="footer-links">
+<li><a href="#vip">Cita Privada en Salón VIP</a></li>
+<li><a href="#vip">Certificación y Tasación</a></li>
+<li><a href="#vip">Mantenimiento de Manufactura</a></li>
+<li><a href="#vip">Grabados Personalizados</a></li>
+<li><a href="#vip">Seguro Internacional</a></li>
+<li><a href="#vip">Guía del Coleccionista</a></li>
+</ul>
+</div>
+<!-- Columna 4: Boutiques y Contacto -->
+<div class="col-12 col-md-3">
+<h5>Boutiques Insignia</h5>
+<div class="mb-3 small">
+<strong class="text-white d-block"><i class="bi bi-geo-alt text-warning me-1"></i> Ginebra (Sede Central):</strong>
+<span>Rue du Rhône 42, 1204 Genève, Suiza</span>
+</div>
+<div class="mb-3 small">
+<strong class="text-white d-block"><i class="bi bi-geo-alt text-warning me-1"></i> Madrid:</strong>
+<span>Calle Serrano 38, 28001 Salamanca, Madrid</span>
+</div>
+<div class="small">
+<strong class="text-white d-block"><i class="bi bi-telephone text-warning me-1"></i> Atención Directa VIP:</strong>
+<span>+41 22 819 9000 / +34 91 555 4321</span>
+</div>
+</div>
+</div>
+<!-- Barra inferior de copyright y políticas legales -->
+<div class="border-top border-secondary border-opacity-25 pt-4 mt-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 text-center text-md-start small">
+<div>
+          © 2025 Aurelia &amp; Chronos Haute Horlogerie S.A. Todos los derechos reservados.
+        </div>
+<div class="d-flex gap-3">
+<a class="text-muted text-decoration-none" href="#">Aviso Legal</a>
+<a class="text-muted text-decoration-none" href="#">Privacidad de Datos</a>
+<a class="text-muted text-decoration-none" href="#">Términos de Adquisición</a>
+<a class="text-muted text-decoration-none" href="#">Certificado de Autenticidad</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- =========================================================================
+       MODAL DE CARRITO / INTENCIÓN DE COMPRA
+       ========================================================================= -->
+<div aria-hidden="true" aria-labelledby="cartModalLabel" class="modal fade" id="cartModal" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content modal-content-luxury">
+<div class="modal-header border-secondary">
+<h5 class="modal-title brand-font text-white" id="cartModalLabel">
+<i class="bi bi-bag-check text-warning me-2"></i> Su Selección de Alta Gama
+          </h5>
+<button aria-label="Cerrar ventana" class="btn-close btn-close-white" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<div id="cartItemContainer">
+<div class="d-flex align-items-center gap-3 p-2 bg-dark rounded border border-secondary mb-3">
+<img alt="Reloj en cesta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsN5h1yHi3baoUi_9o-imKNEjw5fw1P3c5-VrEfdrt9w1S0jLOMReJze4vV8j4S6nFHB2Z4XVThKDEqwpdqGRrVp5y_AQIfbUzBQ68Wir8xoFz757-rFL69j_e5T-aq-zYwk3woISJgrYBKCTz1EjRpoHD0h4IdMCzZPhhnIjzlyCfiC8VfHr8Mv6mBdM8i_gZdeb27H8JFDo_8GAxtYw4caYf2y1zrHdMHqYsWY0" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;"/>
+<div class="flex-grow-1">
+<h6 class="mb-0 text-white" id="cartProductName">Royal Sovereign 42mm</h6>
+<small class="text-muted">Caja acero 904L • Automático</small>
+<div class="text-warning fw-bold" id="cartProductPrice">$18,450 USD</div>
+</div>
+<button class="btn btn-sm btn-outline-danger" onclick="removeCartItem()" title="Eliminar pieza"><i class="bi bi-trash"></i></button>
+</div>
+</div>
+<div class="d-flex justify-content-between text-muted small border-top border-secondary pt-2">
+<span>Seguro de transporte de lujo:</span>
+<span class="text-success fw-bold">Gratuito</span>
+</div>
+<div class="d-flex justify-content-between fs-5 text-white fw-bold mt-2">
+<span>Total Estimado:</span>
+<span class="text-warning" id="cartTotalText">$18,450 USD</span>
+</div>
+</div>
+<div class="modal-footer border-secondary">
+<button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal" type="button">Continuar Explorando</button>
+<button class="btn btn-gold btn-sm" onclick="finalizeCheckout()" type="button">
+<i class="bi bi-lock me-1"></i> Proceder a Reserva Blindada
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Toast de Notificación Rápida de Compra -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+<div aria-atomic="true" aria-live="assertive" class="toast toast-luxury" id="cartToast" role="alert">
+<div class="toast-header bg-dark text-white border-bottom border-secondary">
+<i class="bi bi-gem text-warning me-2"></i>
+<strong class="me-auto">Boutique Aurelia &amp; Chronos</strong>
+<small class="text-muted">Ahora</small>
+<button aria-label="Close" class="btn-close btn-close-white" data-bs-dismiss="toast" type="button"></button>
+</div>
+<div class="toast-body" id="toastMessage">
+        Pieza añadida a su selección privada con éxito.
+      </div>
+</div>
+</div>
+<!-- =========================================================================
+       JAVASCRIPT SENCILLO Y PROPIO: INTERACTIVIDAD Y RESPONSIVIDAD
+       ========================================================================= -->
+<!-- Bootstrap 5 Bundle con Popper oficial CDN -->
+<script crossorigin="anonymous" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // 1. Filtrado dinámico del catálogo por género / edición
+    function filterCatalog(category) {
+      const items = document.querySelectorAll('.product-item');
+      const pills = document.querySelectorAll('#pills-tab .nav-link');
+      
+      // Actualizar estado activo en los botones de filtro
+      pills.forEach(pill => pill.classList.remove('active'));
+      if (category === 'all') document.getElementById('btn-all')?.classList.add('active');
+      if (category === 'hombres') document.getElementById('btn-men')?.classList.add('active');
+      if (category === 'mujeres') document.getElementById('btn-women')?.classList.add('active');
+      if (category === 'edicion-limitada') document.getElementById('btn-limited')?.classList.add('active');
+
+      // Filtrar elementos de la cuadrícula
+      items.forEach(item => {
+        if (category === 'all') {
+          item.style.display = 'block';
+        } else if (item.classList.contains('filter-' + category)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // 2. Gestión simulada de compra / carrito de lujo
+    let currentCartCount = 1;
+
+    function addToCart(title, price) {
+      currentCartCount++;
+      const counter = document.getElementById('cartCounter');
+      if (counter) counter.innerText = currentCartCount;
+
+      // Actualizar datos del modal
+      const modalName = document.getElementById('cartProductName');
+      const modalPrice = document.getElementById('cartProductPrice');
+      const modalTotal = document.getElementById('cartTotalText');
+      if (modalName) modalName.innerText = title;
+      if (modalPrice) modalPrice.innerText = '$' + price.toLocaleString() + ' USD';
+      if (modalTotal) modalTotal.innerText = '$' + price.toLocaleString() + ' USD';
+
+      // Mostrar Toast feedback
+      const toastEl = document.getElementById('cartToast');
+      const toastMsg = document.getElementById('toastMessage');
+      if (toastMsg) {
+        toastMsg.innerHTML = `<strong>${title}</strong> ($${price.toLocaleString()}) ha sido reservado en su bolsa privada.`;
+      }
+      if (toastEl && window.bootstrap) {
+        const toast = new bootstrap.Toast(toastEl, { delay: 3500 });
+        toast.show();
+      }
+    }
+
+    function removeCartItem() {
+      const container = document.getElementById('cartItemContainer');
+      const total = document.getElementById('cartTotalText');
+      const counter = document.getElementById('cartCounter');
+      if (container) {
+        container.innerHTML = '<p class="text-muted text-center py-3">Su bolsa de compras privada está vacía actualmente.</p>';
+      }
+      if (total) total.innerText = '$0 USD';
+      if (counter) counter.innerText = '0';
+    }
+
+    function finalizeCheckout() {
+      alert('Agradecemos su distinción. Un Concierge de Aurelia & Chronos se pondrá en contacto inmediatamente para coordinar los detalles de pago seguro y entrega blindada.');
+      const modalEl = document.getElementById('cartModal');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      if (modal) modal.hide();
+    }
+
+    // 3. Gestión del formulario de contacto VIP
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('fullName').value;
+      alert(`Estimado/a ${name}, su solicitud ha sido enviada con éxito. Su asesor asignado le contactará en menos de 2 horas laborables de forma estrictamente confidencial.`);
+      document.getElementById('contactForm').reset();
+    }
+
+    // 4. Cierre automático del menú desplegable móvil tras clic en un enlace
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        const navbarCollapse = document.getElementById('navbarMain');
+        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+          const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+          if (bsCollapse) bsCollapse.hide();
+        }
+      });
+    });
+  </script>
+</body></html>
